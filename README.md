@@ -18,8 +18,8 @@ The purpose of this exercise is to understand basic behaviour of:
 1. Setup DynamoDB
     1. Create a DynamoDB table to capture the web contact from information from the frontend
 2. Setup IAM role
-    1. Create a IAM policy to allow list/list indexes/read/write/update/delete to a specific DynamoDB table
-    2. Create a IAM role and attach the create role to the policy 
+    1. Create a IAM policy to allow list/list_indexes/read/write/update/delete_items to a specific DynamoDB table
+    2. Create a IAM role and attach the created policy to the role 
 3. Setup Lambda Python 3 function
     1. Create a Lambda function to create records in DynamoDB
     2. Attach the IAM role to the Lambda function
@@ -54,22 +54,38 @@ The purpose of this exercise is to understand basic behaviour of:
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "ReadOnlyAPIActionsOnBooks",
+            "Sid": "DynamodbContactformTable",
             "Effect": "Allow",
             "Action": [
                 "dynamodb:GetItem",
-                "dynamodb:BatchGetItem"
+                "dynamodb:BatchGetItem",
                 "dynamodb:PutItem",
                 "dynamodb:UpdateItem",
                 "dynamodb:DeleteItem"
             ],
-            "arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM"
-			"arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM/index/*"
+            "Resource": [
+            "arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM",
+	    "arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM/index/*"
+	    ]
         }
     ]
 }
 ```
+    6. Click **Review Policy**
+    7. Give the policy a **Name**
+    8. CLick **Create Policy**
     
+2. Create a IAM role and attach the created policy to the role
+    1. Go to IAM landing page
+    2. Click *Create Role*
+    3. Select **Lambda**
+    4. Click **Next: Permissions**
+    5. Search and select **DynamodbContactformTable**
+    6. Click **Next: Tags**
+    7. Enter **Key** and **Value**
+        1. Key = Name
+	2. Value = DynamodbContactformTable 
+
 1. Setup IAM role for the Lambda function
     1. Click **Roles**
     2. CLick **Create Role**
