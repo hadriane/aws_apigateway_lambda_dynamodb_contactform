@@ -49,8 +49,8 @@ The purpose of this exercise is to understand basic behaviour of:
     3. Click **Create Policy**
     4. Click on the **JSON** tab
     5. Enter the below JSON policy after modifying the **arn** to the DynamoDB table created earlier
-    ...
-    {
+...
+{
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -65,10 +65,10 @@ The purpose of this exercise is to understand basic behaviour of:
             ],
             "arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM"
 			"arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM/index/*"
-            }
-        ]
-    }
-    ...
+        }
+    ]
+}
+...
     
 1. Setup IAM role for the Lambda function
     1. Click **Roles**
