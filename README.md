@@ -146,8 +146,7 @@ The purpose of this exercise is to understand basic behaviour of:
         #---Capital the first letter of First Name and Last Name in the JSON object
         event['FIRST_NAME'] = event['FIRST_NAME'].capitalize()
         event['LAST_NAME'] = event['LAST_NAME'].capitalize()
-        
-	#---Put the items into DynamoDB
+        #---Put the items into DynamoDB
 	table.put_item(Item=event)
     ```
  
