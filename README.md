@@ -34,7 +34,10 @@ The purpose of this exercise is to understand basic behaviour of:
 ### Create DynamoDB table
 1. Login to AWS
 2. Go to DynamoDB landing page
-3. Click [Create Table]
+3. Click **Create Table**
+    1. **Table Name** - Give the table a name. Ex: CONTACT_FORM
+    2. **Primary Key** - This is the column in the table that will uniquely indetify the rows in the table. Ex: FIRST_NAME
+    3. **Use Default Settings** - Leave this ticked. This will default the the minimum 5 Read capacity units and 5 Write capacity units which is all we need for a POC
 
 ### Output of script
 
