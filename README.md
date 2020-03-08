@@ -15,11 +15,11 @@ The purpose of this exercise is to understand basic behaviour of:
 
 ### Overview of Steps
 1. Setup DynamoDB
-1.1 Create a DynamoDB table to capture the web contact from information from the frontend
+    1.1 Create a DynamoDB table to capture the web contact from information from the frontend
 2. Setup Lambda Python 3 function
-2.1 Create a IAM role to allow Lambda function to read/write to DynamoDB 
-2.2 Create a Lambda function to create records in DynamoDB
-2.3 Attach the IAM role to the Lambda function
+    2.1 Create a IAM role to allow Lambda function to read/write to DynamoDB 
+    2.2 Create a Lambda function to create records in DynamoDB
+    2.3 Attach the IAM role to the Lambda function
 
 Upload this script to your home directory and run it
 
