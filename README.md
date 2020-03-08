@@ -83,8 +83,7 @@ The purpose of this exercise is to understand basic behaviour of:
     5. Search and select **DynamodbContactformTable**
     6. Click **Next: Tags**
     7. Enter **Key** and **Value**
-        1. Key = Name
-	2. Value = DynamodbContactformTable 
+        1. Key = Name 2. Value = DynamodbContactformTable 
 
 1. Setup IAM role for the Lambda function
     1. Click **Roles**
@@ -92,9 +91,3 @@ The purpose of this exercise is to understand basic behaviour of:
     3. Search for **Lambda** and click on it from the list
     4. CLick **Next: Permissions**
 
-
-The output from running this script will be a log file placed in the directory you ran the script
-
-```
-bash_centos_hardening-16-02-2019_05-31-41.log
-```
