@@ -86,7 +86,33 @@ The purpose of this exercise is to understand basic behaviour of:
         1. Key = Name
         2. Value = DynamodbContactformTable
     8. Click **Next: Review**
-    9. Enter the **Role Name** Ex: DynamodbContactformTable
+    9. Enter the **Role Name** Ex: LambdaDynamodbContactformTable
     10. Click **Create Role**
 
+### Setup Lambda Python 3 function
+1. Create a Lambda function and attach an IAM role to it
+    1. Go to Lambda landing page
+    2. Click **Create Function**
+    3. Select **Author From Scratch**
+    4. Give it a **Function name** Ex: UpadteDynamodbContactformTable
+    5. Select **Runtime** Python 3.8
+    6. Expand **Choose or Create an Execution Role** and select **Use an Existing Role**'
+    7. Select DynamodbContactformTable from **Existing role** drop-down
+    8. Click **Create Function**
+ 
+ 2. Enter the Python code
+     1. In the **Function code** section, in the editor box, enter the following code
+```python
+import boto3, json, os
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('CANDIDATE-ANSWERS')
 
+def lambda_handler(event, context):
+    
+    ###---TEST 3---###
+    event['FIRST_NAME'] = event['FIRST_NAME'].capitalize()
+    event['LAST_NAME'] = event['LAST_NAME'].capitalize()
+    table.put_item(Item=event)
+    return res
+```
+    
