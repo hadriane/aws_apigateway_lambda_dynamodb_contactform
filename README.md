@@ -1,4 +1,4 @@
-# Building A Basic Web Contact Form Using AWS Lambda, AWS API Gateway, DynamoDB and Ajax
+## Building A Basic Web Contact Form Using AWS Lambda, AWS API Gateway, DynamoDB and Ajax
 
 ### Purpose
 
