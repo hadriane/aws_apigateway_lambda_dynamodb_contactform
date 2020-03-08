@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#submit").click(function(e) {
+                e.preventDefault();
+
+                var candidate_name = $("#candidate_name").val(),
+                    candidate_last_name = $("#candidate_last_name").val(),
+                    candidate_location = $("#candidate_location").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: 'https://lgmn1hr4g8.execute-api.ap-southeast-1.amazonaws.com/PROD/candidate-details',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        'CANDIDATE_NAME': candidate_name,
+                        'CANDIDATE_LAST_NAME': candidate_last_name,
+                        'CANDIDATE_LOCATION': candidate_location
+                    }),
+                    success: function(res){
+                        $('#form-response').text('You personal details has been added to our system.');
+                    },
+                    error: function(){
+                        //$('#form-response').text('Error.');
+						window.location.href = 'https://www.google.com/'
+                    }
+                });
+
+            })
+
+        });
+    </script>
+	<style>
+		body {
+			text-align: center;
+		}
+		form {
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+<br><br>
+<h1 style="text-align: center"> REGISTRATION FORM </h1>
+<div>
+<form>
+    <label for="candidate_name">First Name</label>
+    <input id="candidate_name"><br><br>
+    <label for="candidate_last_name">Last Name</label>
+    <input id="candidate_last_name"><br><br>
+    <label for="candidate_location">Location</label>
+	<select type="text" value="" id="candidate_location"> 
+		<option>Malaysia</option> 
+		<option>Singapore</option> 
+		<option>Brunei</option> 
+		<option>Indonesia</option> 
+		<option>Phillipines</option> 
+	</select><br><br>
+	
+    <button id="submit">Submit</button>
+</form>
+</div>
+<div id="form-response"></div>
+</body>
+</html>
