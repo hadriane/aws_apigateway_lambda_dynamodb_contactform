@@ -37,7 +37,7 @@ The purpose of this exercise is to understand basic behaviour of:
     1. Create a web contact form in Apache
 7. Test the frontend web contact form
 
-### Setup DynamoDB
+### 1 - Setup DynamoDB
 1. Login to AWS
 2. Go to DynamoDB landing page
 3. Click **Create Table**
@@ -46,7 +46,7 @@ The purpose of this exercise is to understand basic behaviour of:
     3. **Use Default Settings** - Leave this ticked. This will default the the minimum 5 Read capacity units and 5 Write capacity units which is all we need for a POC
     4. Note the **Amazon Resource Name (ARN)** : arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM
 
-### Setup IAM role
+### 2 - Setup IAM role
 1. Create a IAM policy to read/write to a specific DynamoDB table
     1. Go to IAM landing page
     2. Click on **Policies**
@@ -92,7 +92,7 @@ The purpose of this exercise is to understand basic behaviour of:
     9. Enter the **Role Name** Ex: LambdaDynamodbContactformTable
     10. Click **Create Role**
 
-### Setup API Gateway
+### 3 - Setup API Gateway
 1. Create and API Gateway 
     1. Go to API Gateway landing page
     2. Give it an **API Name** Ex: UpdateDynamodbContactformTable
@@ -116,7 +116,7 @@ The purpose of this exercise is to understand basic behaviour of:
     5. Click **Deploy**
     6. Highlight the **POST** method and note down the **Invoke URL** Ex: https://lkaXXXXXXX.execute-api.ap-southeast-1.amazonaws.com/DEV/updatedynamodbcontactformtable
 
-### Setup Lambda Python 3 function
+### 4 - Setup Lambda Python 3 function
 1. Create a Lambda function and attach an IAM role to it
     1. Go to Lambda landing page
     2. Click **Create Function**
@@ -150,7 +150,7 @@ The purpose of this exercise is to understand basic behaviour of:
         table.put_item(Item=event)
     ```
  
-### Use Postman to test
+### 5 - Use Postman to test
 1. Create a new Postman test
     1. Launch Postman on you PC
     2. Click **NEW**
@@ -175,13 +175,13 @@ The purpose of this exercise is to understand basic behaviour of:
     6. Click **Save** at the top right
 3. Check the DynamoDB table CONTACT_FORM has been update
 
-### Setup a frontend web contact form
+### 6 - Setup a frontend web contact form
 1. Provision a Apache webserver on Centos
 2. In the /var/www/html create two files
     1. index.html with the contents as in [here](https://github.com/hadriane/aws_apigateway_lambda_dynamodb_contactform/edit/master/index.html)
     2. thankyou.html with the content as in [here](https://github.com/hadriane/aws_apigateway_lambda_dynamodb_contactform/blob/master/thankyou.html)
 
-### Test the frontend web contact form
+### 7 - Test the frontend web contact form
 1. Go to http://www.yourdomain.com/index.html
 2. Enter **First Name**
 3. Enter **Last Name**
