@@ -42,6 +42,9 @@ The purpose of this exercise is to understand basic behaviour of:
     3. **Use Default Settings** - Leave this ticked. This will default the the minimum 5 Read capacity units and 5 Write capacity units which is all we need for a POC
     4. Note the **Amazon Resource Name (ARN)** : arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM
 
+### Setup API Gateway
+1. 
+
 ### Setup IAM role
 1. Create a IAM policy to read/write to a specific DynamoDB table
     1. Go to IAM landing page
@@ -101,7 +104,8 @@ The purpose of this exercise is to understand basic behaviour of:
     8. Click **Create Function**
  
  2. Enter the Python code
-     1. In the **Function code** section, in the editor box, enter the following code
+     1. Select the API gateway we created earlier
+     2. In the **Function code** section, in the editor box, paste the following code
 ```python
 import boto3, json, os
 dynamodb = boto3.resource('dynamodb')
@@ -115,4 +119,4 @@ def lambda_handler(event, context):
     table.put_item(Item=event)
     return res
 ```
-    
+ 
