@@ -141,7 +141,7 @@ The purpose of this exercise is to understand basic behaviour of:
 ```python
 import boto3, json, os
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('CANDIDATE-ANSWERS')
+table = dynamodb.Table('CONTACT_FORM')
 
 def lambda_handler(event, context):
     
@@ -149,7 +149,6 @@ def lambda_handler(event, context):
     event['FIRST_NAME'] = event['FIRST_NAME'].capitalize()
     event['LAST_NAME'] = event['LAST_NAME'].capitalize()
     table.put_item(Item=event)
-    return res
 ```
  
 ### Use Postman to test
@@ -166,12 +165,28 @@ def lambda_handler(event, context):
     2. Enter the **Invoke URL** we noted earlier from AWS API Gateway
     3. Select **Body** then select **raw**
     4. Enter the following json object
-```
+```json
 {
-	"FIRST_NAME":"jack",
-	"LAST_NAME":"johnson",
-	"LOCATION":"ampang"
+    "FIRST_NAME":"jack",
+    "LAST_NAME":"johnson",
+    "LOCATION":"ampang"
 }
+
 ```
     5. Change **Text** to **JSON**
     6. Click **Save** at the top right
+3. Check the DynamoDB table CONTACT_FORM has been update
+
+### Setup a frontend web contact form
+1. Provision a Apache webserver on Centos
+2. In the /var/www/html create two files
+    1. index.html with the contents as in [here](https://github.com/hadriane/aws_apigateway_lambda_dynamodb_contactform/edit/master/index.html)
+    2. thankyou.html with the content as in [here](https://github.com/hadriane/aws_apigateway_lambda_dynamodb_contactform/blob/master/thankyou.html)
+
+### Test the frontend web contact form
+1. Go to http://www.yourdomain.com/html
+2. Enter **First Name**
+3. Enter **Last Name**
+4. Pick the **Location** from the drop-down
+5. Click **Submit**
+6. Check the DynamoDB table CONTACT_FORM has been update 
