@@ -86,8 +86,8 @@ The purpose of this exercise is to understand basic behaviour of:
     5. Search and select **DynamodbContactformTable**
     6. Click **Next: Tags**
     7. Enter **Key** and **Value**
-        1. Key = Name
-        2. Value = DynamodbContactformTable
+        1. **Key** = Name
+        2. **Value** = DynamodbContactformTable
     8. Click **Next: Review**
     9. Enter the **Role Name** Ex: LambdaDynamodbContactformTable
     10. Click **Create Role**
@@ -143,10 +143,12 @@ The purpose of this exercise is to understand basic behaviour of:
     
     def lambda_handler(event, context):
         
-        ###---TEST 3---###
+        #---Capital the first letter of First Name and Last Name in the JSON object
         event['FIRST_NAME'] = event['FIRST_NAME'].capitalize()
         event['LAST_NAME'] = event['LAST_NAME'].capitalize()
-        table.put_item(Item=event)
+        
+	#---Put the items into DynamoDB
+	table.put_item(Item=event)
     ```
  
 ### Use Postman to test
@@ -181,7 +183,7 @@ The purpose of this exercise is to understand basic behaviour of:
     2. thankyou.html with the content as in [here](https://github.com/hadriane/aws_apigateway_lambda_dynamodb_contactform/blob/master/thankyou.html)
 
 ### Test the frontend web contact form
-1. Go to http://www.yourdomain.com/html
+1. Go to http://www.yourdomain.com/index.html
 2. Enter **First Name**
 3. Enter **Last Name**
 4. Pick the **Location** from the drop-down
