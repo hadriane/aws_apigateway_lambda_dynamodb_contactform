@@ -31,10 +31,10 @@ The purpose of this exercise is to understand basic behaviour of:
 5. Setup a frontend web contact form
     1. Create a web contact form in Apache
 
-
-```
-sudo ./bash_centos_hardening.sh
-```
+### Create DynamoDB table
+1. Login to AWS
+2. Go to DynamoDB landing page
+3. Click [Create Table]
 
 ### Output of script
 
