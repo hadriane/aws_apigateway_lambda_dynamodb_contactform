@@ -48,28 +48,28 @@ The purpose of this exercise is to understand basic behaviour of:
     3. Click **Create Policy**
     4. Click on the **JSON** tab
     5. Enter the below JSON policy after modifying the **arn** to the DynamoDB table created earlier
-'''json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "DynamodbContactformTable",
-            "Effect": "Allow",
-            "Action": [
-                "dynamodb:GetItem",
-                "dynamodb:BatchGetItem",
-                "dynamodb:PutItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:DeleteItem"
-            ],
-            "Resource": [
-            "arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM",
-	    "arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM/index/*"
-	    ]
-        }
-    ]
-}
-'''
+    ```json
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "DynamodbContactformTable",
+                "Effect": "Allow",
+                "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:BatchGetItem",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:DeleteItem"
+                ],
+                "Resource": [
+                "arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM",
+    	    "arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM/index/*"
+    	    ]
+            }
+        ]
+    }
+    ```
     6. Click **Review Policy**
     7. Give the policy a **Name**
     8. CLick **Create Policy**
@@ -138,18 +138,18 @@ The purpose of this exercise is to understand basic behaviour of:
  3. Enter the Python code
      1. Select the API gateway we created earlier
      2. In the **Function code** section, in the editor box, paste the following code
-```python
-import boto3, json, os
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('CONTACT_FORM')
-
-def lambda_handler(event, context):
+    ```python
+    import boto3, json, os
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('CONTACT_FORM')
     
-    ###---TEST 3---###
-    event['FIRST_NAME'] = event['FIRST_NAME'].capitalize()
-    event['LAST_NAME'] = event['LAST_NAME'].capitalize()
-    table.put_item(Item=event)
-```
+    def lambda_handler(event, context):
+        
+        ###---TEST 3---###
+        event['FIRST_NAME'] = event['FIRST_NAME'].capitalize()
+        event['LAST_NAME'] = event['LAST_NAME'].capitalize()
+        table.put_item(Item=event)
+    ```
  
 ### Use Postman to test
 1. Create a new Postman test
@@ -165,14 +165,13 @@ def lambda_handler(event, context):
     2. Enter the **Invoke URL** we noted earlier from AWS API Gateway
     3. Select **Body** then select **raw**
     4. Enter the following json object
-```json
-{
-    "FIRST_NAME":"jack",
-    "LAST_NAME":"johnson",
-    "LOCATION":"ampang"
-}
-
-```
+    ```json
+    {
+        "FIRST_NAME":"jack",
+        "LAST_NAME":"johnson",
+        "LOCATION":"ampang"
+    }
+    ```
     5. Change **Text** to **JSON**
     6. Click **Save** at the top right
 3. Check the DynamoDB table CONTACT_FORM has been update
