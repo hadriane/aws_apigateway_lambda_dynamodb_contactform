@@ -48,7 +48,7 @@ The purpose of this exercise is to understand basic behaviour of:
     3. Click **Create Policy**
     4. Click on the **JSON** tab
     5. Enter the below JSON policy after modifying the **arn** to the DynamoDB table created earlier
-```json
+'''json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -69,7 +69,7 @@ The purpose of this exercise is to understand basic behaviour of:
         }
     ]
 }
-```
+'''
     6. Click **Review Policy**
     7. Give the policy a **Name**
     8. CLick **Create Policy**
