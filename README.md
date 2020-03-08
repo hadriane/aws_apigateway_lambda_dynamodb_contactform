@@ -77,17 +77,16 @@ The purpose of this exercise is to understand basic behaviour of:
     
 2. Create a IAM role and attach the created policy to the role
     1. Go to IAM landing page
-    2. Click *Create Role*
+    2. Click **Create Role**
     3. Select **Lambda**
     4. Click **Next: Permissions**
     5. Search and select **DynamodbContactformTable**
     6. Click **Next: Tags**
     7. Enter **Key** and **Value**
-        1. Key = Name 2. Value = DynamodbContactformTable 
+        1. Key = Name
+        2. Value = DynamodbContactformTable
+    8. Click **Next: Review**
+    9. Enter the **Role Name** Ex: DynamodbContactformTable
+    10. Click **Create Role**
 
-1. Setup IAM role for the Lambda function
-    1. Click **Roles**
-    2. CLick **Create Role**
-    3. Search for **Lambda** and click on it from the list
-    4. CLick **Next: Permissions**
 
