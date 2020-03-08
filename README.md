@@ -26,11 +26,16 @@ The purpose of this exercise is to understand basic behaviour of:
     3. Create a POST method for the API gateway
     4. Deploy the API
 4. Setup Lambda Python 3 function
-    1. Create a Lambda function to create records in DynamoDB
-    2. Attach the IAM role to the Lambda function
+    1. Create a Lambda function and attach an IAM role to it
+    2. Add Trigger to Lambda function 
+	3. Write the Python code
 5. Use Postman to test
+    1. Create a new Postman test
+	2. Setup the test
+	3. Check the DynamoDB table CONTACT_FORM has been update
 6. Setup a frontend web contact form
     1. Create a web contact form in Apache
+7. Test the frontend web contact form
 
 ### Setup DynamoDB
 1. Login to AWS
@@ -73,7 +78,6 @@ The purpose of this exercise is to understand basic behaviour of:
     6. Click **Review Policy**
     7. Give the policy a **Name**
     8. CLick **Create Policy**
-    
 2. Create a IAM role and attach the created policy to the role
     1. Go to IAM landing page
     2. Click **Create Role**
@@ -104,13 +108,7 @@ The purpose of this exercise is to understand basic behaviour of:
     3. Select Lambda Function for **Integration Type**
     4. Select UpadteDynamodbContactformTable for the **Lambda Function** drop-down
     5. Click **Save** then click **Ok**
-4. Enable IAM authentication for API Gateway
-    1. Highlight the **UpdateDynamodbContactformTable (lkaXXXXXXX)** resource
-    2. Click on the newly created **POST** method
-    3. Click on **Method Request**
-    4. Choose AWS_IAM for **Authorization**
-    5. Click the **Tick Symbol** to save
-5. Deploy the API
+4. Deploy the API
     1. Click **Actions**
     2. Click **Deploy API**
     3. Select [New Stage] for the **Deployment Stage**
@@ -128,14 +126,14 @@ The purpose of this exercise is to understand basic behaviour of:
     6. Expand **Choose or Create an Execution Role** and select **Use an Existing Role**'
     7. Select DynamodbContactformTable from **Existing role** drop-down
     8. Click **Create Function**
- 2. Add Trigger
+ 2. Add Trigger to Lambda function
      1. Click on **Add Trigger**
      2. Select **API Gateway** from the drop-down
      3. Select UpdateDynamodbContactformTable for **API**
      4. Select DEV for **Deployment stage**
      5. Select Open for **Security** (Not a good practice however to keep things simple)
      6. Click **Add**
- 3. Enter the Python code
+ 3. Write the Python code
      1. Select the API gateway we created earlier
      2. In the **Function code** section, in the editor box, paste the following code
     ```python
