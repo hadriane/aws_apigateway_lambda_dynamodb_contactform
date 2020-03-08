@@ -20,17 +20,16 @@ The purpose of this exercise is to understand basic behaviour of:
 2. Setup IAM role
     1. Create a IAM policy to allow list/list_indexes/read/write/update/delete_items to a specific DynamoDB table
     2. Create a IAM role and attach the created policy to the role 
-3. Setup Lambda Python 3 function
+3. Setup an API Gateway
+    1. Create an API Gateway
+    2. Create a resource for the API gateway and enable CORS
+    3. Create a POST method for the API gateway
+    4. Deploy the API
+4. Setup Lambda Python 3 function
     1. Create a Lambda function to create records in DynamoDB
     2. Attach the IAM role to the Lambda function
-3. Setup an API Gateway
-    1. Create a resource for the API gateway
-    2. Create a POST method for the API gateway
-    3. Attach the Lambda function the the POST method
-    4. Enable CORS on the POST method
-    5. Publish the API
-4. Use postmand to test
-5. Setup a frontend web contact form
+5. Use Postman to test
+6. Setup a frontend web contact form
     1. Create a web contact form in Apache
 
 ### Setup DynamoDB
@@ -41,9 +40,6 @@ The purpose of this exercise is to understand basic behaviour of:
     2. **Primary Key** - This is the column in the table that will uniquely indetify the rows in the table. Ex: FIRST_NAME
     3. **Use Default Settings** - Leave this ticked. This will default the the minimum 5 Read capacity units and 5 Write capacity units which is all we need for a POC
     4. Note the **Amazon Resource Name (ARN)** : arn:aws:dynamodb:ap-southeast-X:XXXXXXXXXXXX:table/CONTACT_FORM
-
-### Setup API Gateway
-1. 
 
 ### Setup IAM role
 1. Create a IAM policy to read/write to a specific DynamoDB table
@@ -92,6 +88,36 @@ The purpose of this exercise is to understand basic behaviour of:
     9. Enter the **Role Name** Ex: LambdaDynamodbContactformTable
     10. Click **Create Role**
 
+### Setup API Gateway
+1. Create and API Gateway 
+    1. Go to API Gateway landing page
+    2. Give it an **API Name** Ex: UpdateDynamodbContactformTable
+    3. Click **Create API**
+2. Create a resource for the API gateway and enable CORS
+    1. Click **Actions** then click **Create Resource**
+    2. Give it a **Resource Name** Ex: UpdateDynamodbContactformTable
+    3. Tick **Enable API Gateway CORS**
+    4. Click **Create Resource**
+3.  Create a POST method for the API gateway
+    1. Click **Actions** then click **Create Method**
+    2. Select **POST** from the drop down then click the **Tick Symbol**
+    3. Select Lambda Function for **Integration Type**
+    4. Select UpadteDynamodbContactformTable for the **Lambda Function** drop-down
+    5. Click **Save** then click **Ok**
+4. Enable IAM authentication for API Gateway
+    1. Highlight the **UpdateDynamodbContactformTable (lkaXXXXXXX)** resource
+    2. Click on the newly created **POST** method
+    3. Click on **Method Request**
+    4. Choose AWS_IAM for **Authorization**
+    5. Click the **Tick Symbol** to save
+5. Deploy the API
+    1. Click **Actions**
+    2. Click **Deploy API**
+    3. Select [New Stage] for the **Deployment Stage**
+    4. Give it a **Stage Name** Ex: DEV
+    5. Click **Deploy**
+    6. Highlight the **POST** method and note down the **Invoke URL** Ex: https://lkaXXXXXXX.execute-api.ap-southeast-1.amazonaws.com/DEV/updatedynamodbcontactformtable
+
 ### Setup Lambda Python 3 function
 1. Create a Lambda function and attach an IAM role to it
     1. Go to Lambda landing page
@@ -102,8 +128,14 @@ The purpose of this exercise is to understand basic behaviour of:
     6. Expand **Choose or Create an Execution Role** and select **Use an Existing Role**'
     7. Select DynamodbContactformTable from **Existing role** drop-down
     8. Click **Create Function**
- 
- 2. Enter the Python code
+ 2. Add Trigger
+     1. Click on **Add Trigger**
+     2. Select **API Gateway** from the drop-down
+     3. Select UpdateDynamodbContactformTable for **API**
+     4. Select DEV for **Deployment stage**
+     5. Select Open for **Security** (Not a good practice however to keep things simple)
+     6. Click **Add**
+ 3. Enter the Python code
      1. Select the API gateway we created earlier
      2. In the **Function code** section, in the editor box, paste the following code
 ```python
@@ -120,3 +152,26 @@ def lambda_handler(event, context):
     return res
 ```
  
+### Use Postman to test
+1. Create a new Postman test
+    1. Launch Postman on you PC
+    2. Click **NEW**
+    3. In **Building Blocks** select **Request**
+    4. Give it a **Request Name** Ex: UpdateDynamodbContactformTable 
+    5. Click **Create Collection** and give it a **Collection Name** Ex: AWS
+    6. Click the **Tick Symbol**
+    7. Click **Save to AWS**
+2. Setup the test
+    1. Change the method to **POST**
+    2. Enter the **Invoke URL** we noted earlier from AWS API Gateway
+    3. Select **Body** then select **raw**
+    4. Enter the following json object
+```
+{
+	"FIRST_NAME":"jack",
+	"LAST_NAME":"johnson",
+	"LOCATION":"ampang"
+}
+```
+    5. Change **Text** to **JSON**
+    6. Click **Save** at the top right
