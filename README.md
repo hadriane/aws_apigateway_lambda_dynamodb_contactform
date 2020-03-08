@@ -12,16 +12,25 @@ The purpose of this exercise is to understand basic behaviour of:
 
 - AWS account
 - Apache web server
+- Postman
 
 ### Overview of Steps
 1. Setup DynamoDB
-    1 Create a DynamoDB table to capture the web contact from information from the frontend
+    1. Create a DynamoDB table to capture the web contact from information from the frontend
 2. Setup Lambda Python 3 function
     1. Create a IAM role to allow Lambda function to read/write to DynamoDB 
     2. Create a Lambda function to create records in DynamoDB
     3. Attach the IAM role to the Lambda function
+3. Setup an API Gateway
+    1. Create a resource for the API gateway
+    2. Create a POST method for the API gateway
+    3. Attach the Lambda function the the POST method
+    4. Enable CORS on the POST method
+    5. Publish the API
+4. Use postmand to test
+5. Setup a frontend web contact form
+    1. Create a web contact form in Apache
 
-Upload this script to your home directory and run it
 
 ```
 sudo ./bash_centos_hardening.sh
