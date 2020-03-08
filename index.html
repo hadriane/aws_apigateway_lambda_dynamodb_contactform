@@ -8,25 +8,26 @@
             $("#submit").click(function(e) {
                 e.preventDefault();
 
-                var candidate_name = $("#candidate_name").val(),
-                    candidate_last_name = $("#candidate_last_name").val(),
-                    candidate_location = $("#candidate_location").val();
+                var first_name = $("#first_name").val(),
+                    last_name = $("#last_name").val(),
+                    location = $("#location").val();
 
                 $.ajax({
                     type: "POST",
-                    url: 'https://lgmn1hr4g8.execute-api.ap-southeast-1.amazonaws.com/PROD/candidate-details',
+                    url: 'https://aXXXXXXX.execute-api.ap-southeast-1.amazonaws.com/DEV/updatedynamodbcontactformtable',
                     contentType: 'application/json',
                     data: JSON.stringify({
-                        'CANDIDATE_NAME': candidate_name,
-                        'CANDIDATE_LAST_NAME': candidate_last_name,
-                        'CANDIDATE_LOCATION': candidate_location
+                        'first_name': first_name,
+                        'last_name': last_name,
+                        'location': location
                     }),
                     success: function(res){
                         $('#form-response').text('You personal details has been added to our system.');
+			window.location.href = 'https://www.yourdomain.com/thankyou.html'
                     },
                     error: function(){
-                        //$('#form-response').text('Error.');
-						window.location.href = 'https://www.google.com/'
+                        $('#form-response').text('Error.');
+			window.location.href = 'https://www.yourdomain.com/'
                     }
                 });
 
@@ -48,12 +49,12 @@
 <h1 style="text-align: center"> REGISTRATION FORM </h1>
 <div>
 <form>
-    <label for="candidate_name">First Name</label>
-    <input id="candidate_name"><br><br>
-    <label for="candidate_last_name">Last Name</label>
-    <input id="candidate_last_name"><br><br>
-    <label for="candidate_location">Location</label>
-	<select type="text" value="" id="candidate_location"> 
+    <label for="first_name">First Name</label>
+    <input id="first_name"><br><br>
+    <label for="last_name">Last Name</label>
+    <input id="last_name"><br><br>
+    <label for="location">Location</label>
+	<select type="text" value="" id="location"> 
 		<option>Malaysia</option> 
 		<option>Singapore</option> 
 		<option>Brunei</option> 
